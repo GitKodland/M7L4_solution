@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
-from speach import speach
+from speach import speach_en, speach_ru
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///diary.db'
@@ -38,7 +38,7 @@ def create():
 @app.route('/voice')
 def voices():
     try:
-        text = speach()
+        text = speach_ru()
     except:
         text = "Что-то пошло не так..."
     return render_template('create_card.html', text=text)
